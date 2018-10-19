@@ -1,67 +1,126 @@
+//非线程安全二叉查找树
 public class Binarytree<T extends Comparable<? super T>>{
     //基本操作
-    public Boolean insert(T data){
-        return insert(data,head);
+    public void insert(T data){
+        root=insert(data,root);
     }
 
-    public Boolean delete(T data){
-        return delete(data,head);
+    public void delete(T data){
+        root=delete(data,root);
     }
 
     public void print(){
-        print(head);
+        print(root);
+        System.out.print("\n");
     }
 
-    public T find(){
-        return find(head);
+    public boolean find(T data){
+        return find(root,data);
     }
 
+    public T findmin(){
+        return findmin(root);
+    }
     public Binarytree(){
-        head.right=root=null;
+        root=null;
         size=0;
     }
     //节点
     private static class Node<U> {
-        
+
             public Node<U> left;
-            
+
             public Node<U> right;
-            
+
             public U data;
-    
+
         public Node(Node<U> left, Node<U> right, U data) {
             this.left = left;
             this.right = right;
             this.data = data;
         }
     }
-    //右节点指向树根的头节点
-    private Node<T> head;
+
     //真正的树根
     private Node<T> root;
     //大小
     private int size;
 
-    private Boolean insert(T data, Node<T> node) {
-        if(node.right==null) {
-            node = new Node<T>(null, null, data);
-            return true;
-        }
-        else if (data.compareTo(node.data)>0){
-            return insert(data,node.right);
-        }
-        else if (data.compareTo(node.data)<0){
-            return insert(data,node.left);
-        }
+    private Node<T> insert(T data, Node<T> node) {
+        if(node==null)
+            return new Node<>(null,null,data);
+        int result=data.compareTo(node.data);
+        if(result>0)
+            node.right=insert(data,node.right);
+        else if (result<0)
+            node.left=insert(data,node.left);
         else
-            return false;
-
+            System.out.println("重复:"+data);
+        return node;
     }
-    private Boolean delete(T data, Node<T> node) {
+    //
+    private Node<T> delete(T data, Node<T> node) {
+        if(node==null)
+            return node;
+        int result=data.compareTo(node.data);
+        if (result>0)
+            node.right=delete(data,node.right);
+        else if (result<0)
+            node.left=delete(data,node.left);
+        else {
+            if (node.left!=null&&node.right!=null){
+                T x=findmin(node.right);
+                node.right=delete(x,node.right);
+                node.data=x;
+            }
+            else {
+                Node<T> s=node.left==null?node.right:node.left;
+                node=s;
+            }
+            System.out.println("已删除:"+data);
+        }
 
+        return node;
     }
+
+    private T findmin(Node<T> node) {
+        Node<T> temp = node;
+        while (temp.left!=null)
+            temp=temp.left;
+        return temp.data;
+    }
+
     private void print(Node<T> node) {
+        if(node!=null){
+            print(node.left);
+            System.out.print(node.data+" ");
+            print(node.right);
+        }
     }
-    private T find(Node<T> node) {
+    private boolean find(Node<T> node, T data) {
+        if(node==null)
+            return false;
+        int result=data.compareTo(node.data);
+        if(result>0)
+            return find(node.right,data);
+        else if (result<0)
+            return find(node.left,data);
+        else
+            return true;
+    }
+    public static void main(String[] s){
+        //Binarytree<String> tree=new Binarytree<>();
+        Binarytree<Integer> tree=new Binarytree<>();
+        String[] strings={"sd","sda","ddss"};
+        Integer[] ints={1,5,65,65,88,45,2,3,89,46,2,34,74,5,6};
+        foreach(tree, ints);
+        tree.print();
+        tree.delete(2);
+        tree.print();
+    }
+
+    public  static <TT extends Comparable<? super TT>> void foreach(Binarytree<TT> tree, TT[] arrys) {
+        for(TT ss: arrys)
+            tree.insert(ss);
     }
 }
