@@ -1,4 +1,6 @@
 //非线程安全二叉查找树
+//插入和删除操作有些费解，全是由于java对象”引用“意义不确定造成的，
+//c++中代码采用引用的话代码容易理解
 public class Binarytree<T extends Comparable<? super T>>{
     //基本操作
     public void insert(T data){
@@ -45,7 +47,8 @@ public class Binarytree<T extends Comparable<? super T>>{
     private Node<T> root;
     //大小
     private int size;
-
+    //递归插入，由于java对象引用按值传递，所以采用：
+    //插入到一棵树中并返回插入的树的引用。这样避免传递父节点。
     private Node<T> insert(T data, Node<T> node) {
         if(node==null)
             return new Node<>(null,null,data);
@@ -58,7 +61,7 @@ public class Binarytree<T extends Comparable<? super T>>{
             System.out.println("重复:"+data);
         return node;
     }
-    //
+    //同insert，也是递归删除并返回新树的过程
     private Node<T> delete(T data, Node<T> node) {
         if(node==null)
             return node;
