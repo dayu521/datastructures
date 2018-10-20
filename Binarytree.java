@@ -1,6 +1,7 @@
-//非线程安全二叉查找树
+//二叉查找树
 //插入和删除操作有些费解，全是由于java对象”引用“使用起来像是引用，事实上和c++指针还更贴近，
 //c++中代码采用引用的话代码容易理解
+@NotThreadSafe
 public class Binarytree<T extends Comparable<? super T>>{
     //基本操作
     public void insert(T data){

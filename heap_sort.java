@@ -1,6 +1,7 @@
 import java.util.Arrays;
 
-//
+//堆排序
+@NotThreadSafe
 public class heap_sort {
 
     public static <T extends Comparable<? super T> >void run(T[] x){
