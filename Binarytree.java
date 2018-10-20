@@ -1,5 +1,5 @@
 //非线程安全二叉查找树
-//插入和删除操作有些费解，全是由于java对象”引用“意义不确定造成的，
+//插入和删除操作有些费解，全是由于java对象”引用“使用起来像是引用，事实上和c++指针还更贴近，
 //c++中代码采用引用的话代码容易理解
 public class Binarytree<T extends Comparable<? super T>>{
     //基本操作
@@ -62,6 +62,7 @@ public class Binarytree<T extends Comparable<? super T>>{
         return node;
     }
     //同insert，也是递归删除并返回新树的过程
+
     private Node<T> delete(T data, Node<T> node) {
         if(node==null)
             return node;
@@ -72,6 +73,7 @@ public class Binarytree<T extends Comparable<? super T>>{
             node.left=delete(data,node.left);
         else {
             if (node.left!=null&&node.right!=null){
+                //删除带有两个节点的节点，找到右子树最小值替换
                 T x=findmin(node.right);
                 node.right=delete(x,node.right);
                 node.data=x;

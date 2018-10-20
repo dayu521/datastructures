@@ -9,11 +9,11 @@ public class heap_sort {
         //依次从堆中弹出最大值放在数组后面完成排序
         for (int i=x.length-1;i>0;i--){
             swap(x,0,i);
-            perlatedown(x, 0,i);
+            percolatedown(x, 0,i);
         }
     }
 
-    private static < T extends Comparable<? super T> > void perlatedown(T[] x, int i,int l) {
+    private static < T extends Comparable<? super T> > void percolatedown(T[] x, int i, int l) {
         T temp=x[i];
         int parent,child;
 
@@ -37,7 +37,7 @@ public class heap_sort {
 
     private static <T extends Comparable<? super T> >void buildheap(T[] x) {
         for(int i=x.length/2-1;i>=0;i--){
-            perlatedown(x,i,x.length);
+            percolatedown(x,i,x.length);
         }
     }
 public static void main(String[] xx){
