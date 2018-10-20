@@ -32,9 +32,7 @@ public class Binarytree<T extends Comparable<? super T>>{
     private static class Node<U> {
 
             public Node<U> left;
-
             public Node<U> right;
-
             public U data;
 
         public Node(Node<U> left, Node<U> right, U data) {
