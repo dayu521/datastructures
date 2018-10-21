@@ -42,10 +42,11 @@ public class heap_sort {
         }
     }
 public static void main(String[] xx){
-        Integer[] m={15,5,32,654,65,32,45,66,32,10};
-        System.out.println(Arrays.toString(m));
-        run(m);
-        System.out.println(Arrays.toString(m));
+//        Integer[] m={15,5,32,654,65,32,45,66,32,10};
+//        System.out.println(Arrays.toString(m));
+//        run(m);
+//        System.out.println(Arrays.toString(m));
+    tools.tests(heap_sort::run,"堆排序");
 }
 
 }
