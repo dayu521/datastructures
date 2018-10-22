@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 //希尔排序
 @NotThreadSafe
 public class shell_sort {
@@ -23,6 +21,6 @@ public class shell_sort {
 //        System.out.println(Arrays.toString(m));
 //        run(m);
 //        System.out.println(Arrays.toString(m));
-        tools.tests(shell_sort::run,"希尔排序");
+        tools.testsort(shell_sort::run,"希尔排序");
     }
 }

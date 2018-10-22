@@ -1,4 +1,5 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 //堆排序
 @NotThreadSafe
@@ -46,7 +47,7 @@ public static void main(String[] xx){
 //        System.out.println(Arrays.toString(m));
 //        run(m);
 //        System.out.println(Arrays.toString(m));
-    tools.tests(heap_sort::run,"堆排序");
+    tools.testsort(heap_sort::run,"堆排序");
 }
 
 }
