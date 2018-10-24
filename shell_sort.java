@@ -16,11 +16,8 @@ public class shell_sort {
                 a[k]=temp;
             }
     }
+
     public static void main(String[] x){
-//        Integer[] m={15,5,32,654,65,32,45,66,32,10};
-//        System.out.println(Arrays.toString(m));
-//        run(m);
-//        System.out.println(Arrays.toString(m));
         tools.testsort(shell_sort::run,"希尔排序");
     }
 }

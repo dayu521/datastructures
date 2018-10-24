@@ -14,4 +14,9 @@ public class tools {
         x.run(m);
         System.out.println(Arrays.toString(m));
     }
+    public static <T> void swap(T[] x, int i, int j) {
+        T tem=x[i];
+        x[i]=x[j];
+        x[j]=tem;
+    }
 }
