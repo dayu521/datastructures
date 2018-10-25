@@ -1,3 +1,5 @@
+package ss;
+
 public class insert_sort {
     //为快排使用
     public static <T extends Comparable<? super T> > void run(T[] a,int left,int right){

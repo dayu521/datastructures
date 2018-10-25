@@ -1,3 +1,5 @@
+package ss;
+
 public class quick_sort {
     public static <T extends Comparable<? super T> >void run(T[] x){
         run(x,0,x.length-1);

@@ -1,3 +1,5 @@
+package ss;
+
 import java.util.Random;
 
 /**

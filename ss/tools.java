@@ -1,3 +1,5 @@
+package ss;
+
 import java.util.Arrays;
 
 //测设使用

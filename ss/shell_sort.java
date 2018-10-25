@@ -1,3 +1,5 @@
+package ss;
+
 //希尔排序
 @NotThreadSafe
 public class shell_sort {
