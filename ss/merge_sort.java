@@ -1,5 +1,5 @@
 package ss;
-
+//归并排序
 public class merge_sort {
     public static <T extends Comparable<? super T> >void run(T[] x){
         run(x,(T[]) new Comparable[x.length],0,x.length-1);
@@ -11,6 +11,7 @@ public class merge_sort {
             int k=(i+i1)/2;
             run(x,objects,i,k);
             run(x,objects,k+1,i1);
+            //合并
             merge(x,objects,i,k,k+1,i1);
         }
     }
@@ -19,18 +20,21 @@ public class merge_sort {
     void merge(T[] x, T[] objects, int a1, int a2, int b1, int b2) {
         int i=a1,j=b2;
         int temp=a1;
+        //合并两个数组
         while (a1<=a2&&b1<=b2){
             if(x[a1].compareTo(x[b1])<0)
                 objects[temp++]=x[a1++];
             else
                 objects[temp++]=x[b1++];
         }
+        //剩下的全部直接复制到objects
         if(a1>a2)
             while (b1<=b2)
                 objects[temp++]=x[b1++];
         else if(b1>b2)
             while (a1<=a2)
                 objects[temp++]=x[a1++];
+        //复制回去
         for(;i<=j;i++)
             x[i]= objects[i];
     }

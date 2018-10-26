@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 // n为 0<n<K 的整数
 public class count_sort {
-    public static void run(int[] x){
-        run(x,findmax(x));
+    public static int[] run(int[] x){
+        return run(x,findmax(x));
     }
 
-    private static void run(int[] x, int k) {
+    private static int[] run(int[] x, int k) {
         int[] A1=new int[k+1];
         int[] out=new int[x.length];
         for(int i=0;i<x.length;i++)
@@ -21,6 +21,7 @@ public class count_sort {
             A1[x[i]]--;
         }
         System.out.println(Arrays.toString(out));
+        return out;
     }
 
     private static int findmax(int[] x) {
