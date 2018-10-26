@@ -1,7 +1,7 @@
 package ss;
 
 //希尔排序
-@NotThreadSafe
+
 public class shell_sort {
     public static <T extends Comparable<? super T> > void run(T[] a){
         //应该写到第二个for循环里头增加可读性，但我老有种
