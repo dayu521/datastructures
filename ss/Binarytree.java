@@ -1,34 +1,39 @@
 package ss;
 
-//二叉查找树
+//二叉查找树，基本上能采用递归，就不用循环，除非到了优化的时候
 //插入和删除操作有些费解，全是由于java对象”引用“使用起来像是引用，事实上和c++指针还更贴近，
 //c++中代码采用引用的话代码容易理解
 
 public class Binarytree<T extends Comparable<? super T>>{
-    //基本操作
+    //插入
     public void insert(T data){
         root=insert(data,root);
     }
-
+    //删除
     public void delete(T data){
         root=delete(data,root);
     }
-
+    //中序遍历
     public void print(){
         print(root);
         System.out.print("\n");
     }
-
+    //查找
     public boolean find(T data){
         return find(root,data);
     }
-
+    //后继 前继略
+    public T houji( T x){
+        if(find(root,x))
+            return houji(this.root,x);
+        return null;
+    }
+    //最小值 最大值略
     public T findmin(){
         return findmin(root);
     }
     public Binarytree(){
         root=null;
-        size=0;
     }
     //节点
     private static class Node<U> {
@@ -46,8 +51,7 @@ public class Binarytree<T extends Comparable<? super T>>{
 
     //真正的树根
     private Node<T> root;
-    //大小
-    private int size;
+
     //递归插入，由于java对象引用按值传递，所以采用：
     //插入到一棵树中并返回插入的树的引用。这样避免传递父节点。
     private Node<T> insert(T data, Node<T> node) {
@@ -114,6 +118,19 @@ public class Binarytree<T extends Comparable<? super T>>{
         else
             return true;
     }
+
+    private T houji(Node<T> node, T x) {
+        if(node==null)
+            return null;
+        int compare_result=x.compareTo(node.data);
+        if(compare_result>=0)
+            return houji(node.right,x);
+        else {
+            T houji = houji(node.left, x);
+            return houji==null?node.data:houji;
+        }
+
+    }
     public static void main(String[] s){
         //Binarytree<String> tree=new Binarytree<>();
         Binarytree<Integer> tree=new Binarytree<>();
@@ -123,6 +140,7 @@ public class Binarytree<T extends Comparable<? super T>>{
         tree.print();
         tree.delete(2);
         tree.print();
+        System.out.println(tree.houji(3));
     }
 
     public  static <TT extends Comparable<? super TT>> void foreach(Binarytree<TT> tree, TT[] arrys) {
