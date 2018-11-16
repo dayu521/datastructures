@@ -4,11 +4,12 @@ import java.util.Arrays;
 
 // n为 0<n<K 的整数
 public class count_sort {
-    public static int[] run(int[] x){
-        return run(x,findmax(x));
+    public static void run(int[] x){
+        run(x,findmax(x));
     }
 
-    private static int[] run(int[] x, int k) {
+    private static void run(int[] x, int k) {
+        //0也算一位，所以加上1
         int[] A1=new int[k+1];
         int[] out=new int[x.length];
         for(int i=0;i<x.length;i++)
@@ -17,11 +18,12 @@ public class count_sort {
             A1[i]=A1[i]+A1[i-1];
         for (int i=x.length-1;i>=0;i--){
             //实际上要向前偏移一位
+            //这里有个小坑，假设前面有k-1,下一位理应该放在k上，但数组是包括0,所以0到k-1一共
+            //k位，k应该放在k-1，即A1[x[i]]-1
             out[A1[x[i]]-1]=x[i];
             A1[x[i]]--;
         }
         System.out.println(Arrays.toString(out));
-        return out;
     }
 
     private static int findmax(int[] x) {
