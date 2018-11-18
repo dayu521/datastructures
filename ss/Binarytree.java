@@ -24,9 +24,9 @@ public class Binarytree<T extends Comparable<? super T>>{
     }
     //后继 前继略
     public T houji( T x){
-        if(find(root,x))
+        //if(find(root,x))
             return houji(this.root,x);
-        return null;
+        //return null;
     }
     //最小值 最大值略
     public T findmin(){
@@ -140,7 +140,7 @@ public class Binarytree<T extends Comparable<? super T>>{
         tree.print();
         tree.delete(2);
         tree.print();
-        System.out.println(tree.houji(3));
+        System.out.println(tree.houji(4));
     }
 
     public  static <TT extends Comparable<? super TT>> void foreach(Binarytree<TT> tree, TT[] arrys) {
