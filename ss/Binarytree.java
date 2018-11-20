@@ -4,16 +4,19 @@ package ss;
 //插入和删除操作有些费解，全是由于java对象”引用“使用起来像是引用，事实上和c++指针还更贴近，
 //c++中代码采用引用的话代码容易理解
 
-public class Binarytree<T extends Comparable<? super T>>{
+public class Binarytree<T extends Comparable<? super T>> implements Tree<T>{
     //插入
+    @Override
     public void insert(T data){
         root=insert(data,root);
     }
     //删除
-    public void delete(T data){
-        root=delete(data,root);
+    @Override
+    public void remove(T data){
+        root= remove(data,root);
     }
     //中序遍历
+    @Override
     public void print(){
         print(root);
         System.out.print("\n");
@@ -32,6 +35,7 @@ public class Binarytree<T extends Comparable<? super T>>{
     public T findmin(){
         return findmin(root);
     }
+
     public Binarytree(){
         root=null;
     }
@@ -68,19 +72,19 @@ public class Binarytree<T extends Comparable<? super T>>{
     }
     //同insert，也是递归删除并返回新树的过程
 
-    private Node<T> delete(T data, Node<T> node) {
+    private Node<T> remove(T data, Node<T> node) {
         if(node==null)
             return node;
         int result=data.compareTo(node.data);
         if (result>0)
-            node.right=delete(data,node.right);
+            node.right= remove(data,node.right);
         else if (result<0)
-            node.left=delete(data,node.left);
+            node.left= remove(data,node.left);
         else {
             if (node.left!=null&&node.right!=null){
                 //删除带有两个节点的节点，找到右子树最小值替换
                 T x=findmin(node.right);
-                node.right=delete(x,node.right);
+                node.right= remove(x,node.right);
                 node.data=x;
             }
             else {
@@ -139,7 +143,7 @@ public class Binarytree<T extends Comparable<? super T>>{
         Integer[] ints={1,5,65,65,88,45,2,3,89,46,2,34,74,5,6};
         foreach(tree, ints);
         tree.print();
-        tree.delete(2);
+        tree.remove(2);
         tree.print();
         System.out.println(tree.houji(4));
     }

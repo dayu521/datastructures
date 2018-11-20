@@ -1,12 +1,19 @@
 package ss;
 
-public class AVLtree<T extends Comparable<? super T>> {
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+
+public class AVLtree<T extends Comparable<? super T>> implements Tree<T> {
+    @Override
     public void insert(T x){
         root=insert(root,x);
     }
+    @Override
     public void remove(T x){
         root=remove(root,x);
     }
+    @Override
     public void print(){
         print(root);
     }
@@ -52,7 +59,7 @@ public class AVLtree<T extends Comparable<? super T>> {
             if(node.left!=null&&node.right!=null) {
                 T min = findmin(node.right);
                 node.item=min;
-                remove(node.right,min);
+                node.right=remove(node.right,min);
             }
             else{
                 node=node.left==null?node.right:node.left;
@@ -75,7 +82,8 @@ public class AVLtree<T extends Comparable<? super T>> {
                 node=rotatewithright(node);
             else
                 node=doublerotatewithright(node);
-
+        //下面重新计算高度是因为此时高度相差不超过1,未经过旋转平衡
+        //此处可能代码简洁性反而影响了清晰性
         int leftheight=height(node.left);
         int rightheight=height(node.right);
         node.height=leftheight>rightheight?leftheight+1:
@@ -117,7 +125,7 @@ public class AVLtree<T extends Comparable<? super T>> {
     private void print(Node<T> node) {
         if(node!=null){
             print(node.left);
-            System.out.print(node.item+"("+node.height+")");
+            System.out.print(node.item+" ");
             print(node.right);
         }
     }
@@ -134,6 +142,27 @@ public class AVLtree<T extends Comparable<? super T>> {
             node=node.left;
         return node.item;
     }
+    public void printree(){
+        printree(new LinkedList<>(Arrays.asList(root)),new LinkedList<>());
+    }
+    //尽量按照树形打印
+    private void printree(LinkedList<Node<T>> q1,LinkedList<Node<T>> q2){
+        if(!q1.isEmpty()){
+            Node<T> tem;
+            while (!q1.isEmpty()){
+                tem=q1.poll();
+                System.out.print(tem.item+"("+tem.height+")"+" ");
+                if(tem.left!=null)
+                    q2.add(tem.left);
+                if (tem.right!=null)
+                    q2.add(tem.right);
+            }
+            System.out.println("");
+            printree(q2,q1);
+        }
+
+
+    }
     public static void main(String[] s){
         //Binarytree<String> tree=new Binarytree<>();
         AVLtree<Integer> tree=new AVLtree<>();
@@ -141,9 +170,13 @@ public class AVLtree<T extends Comparable<? super T>> {
         Integer[] ints={1,5,65,65,88,45,2,3,89,46,2,34,74,5,6};
         foreach(tree, ints);
         tree.print();
-//        tree.remove(2);
-//        tree.print();
-        //System.out.println(tree.houji(4));
+        tree.printree();
+//        for(Integer x:new LinkedList<Integer>(Arrays.asList(ints)))
+//            System.out.print(x+" ");
+        tree.remove(2);
+        tree.print();
+        tree.printree();
+
     }
 
     public  static <TT extends Comparable<? super TT>> void foreach(AVLtree<TT> tree, TT[] arrys) {
