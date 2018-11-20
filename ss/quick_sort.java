@@ -42,6 +42,6 @@ public class quick_sort {
     }
 
     public static void main(String[] x){
-        tools.testsort(quick_sort::run,"快排");
+        tools.testyuanzhisort(quick_sort::run,"快排");
     }
 }

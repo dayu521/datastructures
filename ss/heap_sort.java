@@ -38,7 +38,7 @@ public class heap_sort {
         }
     }
 public static void main(String[] xx){
-    tools.testsort(heap_sort::run,"堆排序");
+    tools.testyuanzhisort(heap_sort::run,"堆排序");
 }
 
 }

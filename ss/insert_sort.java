@@ -14,7 +14,7 @@ public class insert_sort {
 
     }
     public static void main(String[] x){
-        tools.testsort(insert_sort::run,"插入排序");
+        tools.testyuanzhisort(insert_sort::run,"插入排序");
     }
     public static <T extends Comparable<? super T> > void run(T[] ts) {
         run(ts,0,ts.length-1);

@@ -39,6 +39,6 @@ public class merge_sort {
             x[i]= objects[i];
     }
     public static void main(String[] x){
-        tools.testsort(merge_sort::run,"归并排序");
+        tools.testyuanzhisort(merge_sort::run,"归并排序");
     }
 }

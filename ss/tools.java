@@ -9,7 +9,7 @@ interface lol{
     <T extends Comparable<? super T>> void run(T[] x);
 }
 public class tools {
-    public static void testsort(lol x, String s){
+    public static void testyuanzhisort(lol x, String s){
         System.out.println(s);
         Integer[] m={15,5,32,654,65,32,45,66,32,10};
         System.out.println(Arrays.toString(m));

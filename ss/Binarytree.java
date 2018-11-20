@@ -94,10 +94,11 @@ public class Binarytree<T extends Comparable<? super T>>{
     }
 
     private T findmin(Node<T> node) {
-        Node<T> temp = node;
-        while (temp.left!=null)
-            temp=temp.left;
-        return temp.data;
+        if(node==null)
+            return null;
+        while (node.left!=null)
+            node=node.left;
+        return node.data;
     }
 
     private void print(Node<T> node) {

@@ -20,6 +20,6 @@ public class shell_sort {
     }
 
     public static void main(String[] x){
-        tools.testsort(shell_sort::run,"希尔排序");
+        tools.testyuanzhisort(shell_sort::run,"希尔排序");
     }
 }
