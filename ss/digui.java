@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 
-class tongpeifu {
+class digui {
 	
 	public static char[] N= {'0','1','2','3','4','5','6','7','8','9'};
 	public static final int UNIT=10;
@@ -69,7 +69,21 @@ class tongpeifu {
 			return a1.length() > a2.length() ? a1 : a2;
 		}
 	}
+    
+    public static int[] P = { 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
 
+	public int Cut(int L) {
+		if (L == 0)
+			return 0;
+		int max = 0;
+		int temp = 0;
+		for (int i = 1; i <= L ; i++) {
+			temp = Cut(L - i) + P[i-1];
+			max = max > temp ? max : temp;
+		}
+		return max;
+	}
+	
 	public void static main(String[] s) {
 		NumberToString(2544);
 		System.out.println("===============");
@@ -80,6 +94,8 @@ class tongpeifu {
 		System.out.println(PaLouTi(6));
 		System.out.println("===============");
 		System.out.println(LCS(s1,s1.length-1,s2,s2.length-1));
+		System.out.println("===============");
+		System.out.println(Cut(10));
 	}
 
 }
